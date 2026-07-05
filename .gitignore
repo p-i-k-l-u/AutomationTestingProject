@@ -1,0 +1,26 @@
+# Maven Build Target
+/target/
+
+# TestNG Output
+/test-output/
+
+# Automation Reports & Screenshots
+/report/
+/reports/
+/screenshots/
+*.log
+
+# Sensitive Credentials / Configuration
+src/main/resources/config.properties
+
+# Eclipse IDE files
+/.settings/
+/.classpath
+/.project
+
+# IntelliJ IDEA IDE files
+/.idea/
+/*.iml
+
+# VS Code IDE files
+/.vscode/
