@@ -91,8 +91,6 @@
 //    }
 //}
 
-
-
 // --------------------------- NEW Login Code with Helper Function -----------------
 package com.framework.pages;
 
@@ -105,48 +103,43 @@ import org.openqa.selenium.WebDriver;
 
 public class LoginPage extends BasePage {
 
-    WebDriver driver;
+        WebDriver driver;
 
-    By username =
-            By.name("username");
+        By username = By.name("username");
 
-    By password =
-            By.name("password");
+        By password = By.name("password");
 
-    By loginBtn =
-            By.xpath("//button[@type='submit']");
+        By loginBtn = By.xpath("//button[@type='submit']");
 
-    By errorMessage =
-            By.cssSelector(".oxd-alert-content-text");
+        By errorMessage = By.cssSelector(".oxd-alert-content-text");
 
-    public LoginPage(WebDriver driver) {
+        public LoginPage(WebDriver driver) {
 
-        super(driver);
+                super(driver);
 
-        this.driver = driver;
-    }
+                this.driver = driver;
+        }
 
-    public void login(String user, String pass) {
+        public void login(String user, String pass) {
 
-        WaitHelper.waitForElement(
-                driver,
-                username
-        );
+                WaitHelper.waitForElement(
+                                driver,
+                                username);
 
-        type(username, user);
+                type(username, user);
 
-        type(password, pass);
+                type(password, pass);
 
-        click(loginBtn);
-    }
+                click(loginBtn);
+        }
 
-    public boolean isErrorDisplayed() {
+        public boolean isErrorDisplayed() {
 
-        WaitHelper.waitForElement(
-                driver,
-                errorMessage
-        );
+                WaitHelper.waitForElement(
+                                driver,
+                                errorMessage);
 
-        return isDisplayed(errorMessage);
-    }
+                return isDisplayed(errorMessage);
+
+        }
 }
