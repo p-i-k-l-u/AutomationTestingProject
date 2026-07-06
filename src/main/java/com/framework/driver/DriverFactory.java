@@ -8,43 +8,39 @@ import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-import com.framework.utilities.ConfigReader;
+// import com.framework.utilities.ConfigReader;
 
 public class DriverFactory {
 
     public static WebDriver initDriver(String browser) {
         WebDriver driver = null;
         try {
-            if(browser.equalsIgnoreCase("chrome")) {
+            if (browser.equalsIgnoreCase("chrome")) {
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--remote-allow-origins=*");
                 driver = new RemoteWebDriver(
                         new URL("http://localhost:4444"),
-                        options
-                );
+                        options);
             }
             // FIREFOX
-            else if(browser.equalsIgnoreCase("firefox")) {
+            else if (browser.equalsIgnoreCase("firefox")) {
                 FirefoxOptions options = new FirefoxOptions();
                 driver = new RemoteWebDriver(
                         new URL("http://localhost:4444"),
-                        options
-                );
+                        options);
             }
             // EDGE
-            else if(browser.equalsIgnoreCase("edge")) {
+            else if (browser.equalsIgnoreCase("edge")) {
                 EdgeOptions options = new EdgeOptions();
                 driver = new RemoteWebDriver(
                         new URL("http://localhost:4444"),
-                        options
-                );
+                        options);
             }
-            
+
             if (driver != null) {
                 driver.manage().window().maximize();
             }
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -52,40 +48,38 @@ public class DriverFactory {
     }
 }
 
-
-
 // --------------------------------------- Normal Code ---------------------
 
-//package com.framework.driver;
+// package com.framework.driver;
 //
-//import com.framework.utilities.ConfigReader;
+// import com.framework.utilities.ConfigReader;
 //
-//import org.openqa.selenium.WebDriver;
+// import org.openqa.selenium.WebDriver;
 //
-//import org.openqa.selenium.chrome.ChromeDriver;
+// import org.openqa.selenium.chrome.ChromeDriver;
 //
-//import io.github.bonigarcia.wdm.WebDriverManager;
+// import io.github.bonigarcia.wdm.WebDriverManager;
 //
-//public class DriverFactory {
+// public class DriverFactory {
 //
-//    public static WebDriver driver;
+// public static WebDriver driver;
 //
-//    public static WebDriver initDriver() {
+// public static WebDriver initDriver() {
 //
-//        String browser =
-//                ConfigReader.getProperty(
-//                        "browser"
-//                );
+// String browser =
+// ConfigReader.getProperty(
+// "browser"
+// );
 //
-//        if(browser.equalsIgnoreCase("chrome")) {
+// if(browser.equalsIgnoreCase("chrome")) {
 //
-//            WebDriverManager.chromedriver().setup();
+// WebDriverManager.chromedriver().setup();
 //
-//            driver = new ChromeDriver();
+// driver = new ChromeDriver();
 //
-//            driver.manage().window().maximize();
-//        }
+// driver.manage().window().maximize();
+// }
 //
-//        return driver;
-//    }
-//}
+// return driver;
+// }
+// }

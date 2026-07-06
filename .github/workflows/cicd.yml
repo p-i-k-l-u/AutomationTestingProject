@@ -27,8 +27,27 @@ jobs:
       - name: Start Selenium Grid
         run: docker compose up -d
 
+      - name: Wait for Selenium Grid
+        run: |
+          echo "Waiting for Selenium Grid to be ready..."
+          until curl -s http://localhost:4444/status | grep -q '"ready": true'; do
+            sleep 2
+          done
+          echo "Selenium Grid is ready!"
+
       - name: Run Maven Tests
         run: mvn clean test
+
+      - name: Print Test Failure Details
+        if: failure()
+        run: |
+          echo "=== Maven Test Failure Logs ==="
+          for file in target/surefire-reports/*.txt; do
+            if [ -f "$file" ]; then
+              echo "--- Log: $file ---"
+              cat "$file"
+            fi
+          done
 
       - name: Stop Selenium Grid
         if: always()
