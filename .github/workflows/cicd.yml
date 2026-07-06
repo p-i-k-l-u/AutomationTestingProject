@@ -1,0 +1,44 @@
+name: CI/CD Production Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  continuous-integration:
+    name: Run Automation Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository Code
+        uses: actions/checkout@v4
+
+      - name: Setup Java Environment
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Start Selenium Grid
+        run: docker compose up -d
+
+      - name: Run Maven Tests
+        run: mvn clean test
+
+      - name: Stop Selenium Grid
+        if: always()
+        run: docker compose down
+
+      - name: Upload Test Report & Screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: selenium-test-reports
+          path: |
+            reports/
+            screenshots/
