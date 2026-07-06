@@ -35,8 +35,16 @@ jobs:
           done
           echo "Selenium Grid is ready!"
 
+      - name: Create Config Properties File
+        run: |
+          mkdir -p src/main/resources
+          echo "browser=chrome" > src/main/resources/config.properties
+          echo "url=https://opensource-demo.orangehrmlive.com/web/index.php/auth/login" >> src/main/resources/config.properties
+          echo "username=Admin" >> src/main/resources/config.properties
+          echo "password=admin123" >> src/main/resources/config.properties
+
       - name: Run Maven Tests
-        run: mvn clean test
+        run: mvn clean test -DsuiteXmlFile=testng-ci.xml
 
       - name: Print Test Failure Details
         if: failure()
