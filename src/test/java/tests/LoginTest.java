@@ -105,11 +105,11 @@
 package tests;
 
 import com.framework.base.BaseTest;
-
+import com.framework.driver.DriverManager;
 import com.framework.pages.DashboardPage;
 import com.framework.pages.LoginPage;
-
 import com.framework.utilities.ConfigReader;
+import com.framework.utilities.ExtentReportManager;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -120,18 +120,18 @@ public class LoginTest extends BaseTest {
     public void validLoginTest() {
 
         // Create Test
-        test = extent.createTest(
+        ExtentReportManager.setTest(extent.createTest(
                 "Valid Login Test"
-        );
+        ));
 
-        test.info(
+        ExtentReportManager.getTest().info(
                 "Browser Launched"
         );
 
         LoginPage loginPage =
-                new LoginPage(driver);
+                new LoginPage(DriverManager.getDriver());
 
-        test.info(
+        ExtentReportManager.getTest().info(
                 "Entering Username and Password"
         );
 
@@ -146,14 +146,14 @@ public class LoginTest extends BaseTest {
                 )
         );
 
-        test.info(
+        ExtentReportManager.getTest().info(
                 "Login Button Clicked"
         );
 
         DashboardPage dashboard =
-                new DashboardPage(driver);
+                new DashboardPage(DriverManager.getDriver());
 
-        test.info(
+        ExtentReportManager.getTest().info(
                 "Verifying Dashboard"
         );
 
@@ -161,7 +161,7 @@ public class LoginTest extends BaseTest {
                 dashboard.verifyDashboardDisplayed()
         );
 
-        test.pass(
+        ExtentReportManager.getTest().pass(
                 "Dashboard Verified Successfully"
         );
 

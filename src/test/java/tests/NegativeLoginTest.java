@@ -1,37 +1,35 @@
 package tests;
 
 import com.framework.base.BaseTest;
-
+import com.framework.driver.DriverManager;
 import com.framework.pages.LoginPage;
+import com.framework.utilities.ExtentReportManager;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class NegativeLoginTest
-        extends BaseTest {
+public class NegativeLoginTest extends BaseTest {
 
     @Test
     public void invalidLoginTest() {
-    	
-    	
 
-        test = extent.createTest(
+        ExtentReportManager.setTest(extent.createTest(
                 "Invalid Login Test"
-        );
+        ));
 
-        test.info(
+        ExtentReportManager.getTest().info(
                 "Entering Invalid Credentials"
         );
 
         LoginPage loginPage =
-                new LoginPage(driver);
+                new LoginPage(DriverManager.getDriver());
 
         loginPage.login(
                 "WrongUser",
                 "WrongPassword"
         );
 
-        test.info(
+        ExtentReportManager.getTest().info(
                 "Checking Error Message"
         );
 
@@ -39,10 +37,8 @@ public class NegativeLoginTest
                 loginPage.isErrorDisplayed()
         );
 
-        test.pass(
+        ExtentReportManager.getTest().pass(
                 "Error Message Verified"
         );
     }
-    
- 
 }
