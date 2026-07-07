@@ -134,12 +134,12 @@ public class LoginPage extends BasePage {
         }
 
         public boolean isErrorDisplayed() {
-
-                WaitHelper.waitForElement(
-                                driver,
-                                errorMessage);
-
-                return isDisplayed(errorMessage);
-
+                try {
+                        org.openqa.selenium.support.ui.WebDriverWait wait = new org.openqa.selenium.support.ui.WebDriverWait(driver, java.time.Duration.ofSeconds(20));
+                        wait.until(org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated(errorMessage));
+                        return isDisplayed(errorMessage);
+                } catch (Exception e) {
+                        return false;
+                }
         }
 }

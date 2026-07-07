@@ -7,6 +7,7 @@
         <classes>
             <class name="tests.LoginTest"/>
             <class name="tests.NegativeLoginTest"/>
+            <class name="tests.PIMTest"/>
         </classes>
     </test>
 
@@ -16,6 +17,7 @@
         <classes>
             <class name="tests.LoginTest"/>
             <class name="tests.NegativeLoginTest"/>
+            <class name="tests.PIMTest"/>
         </classes>
     </test>
 
@@ -25,6 +27,14 @@
         <classes>
             <class name="tests.LoginTest"/>
             <class name="tests.NegativeLoginTest"/>
+            <class name="tests.PIMTest"/>
+        </classes>
+    </test>
+
+    <!-- API TESTS -->
+    <test name="APITest">
+        <classes>
+            <class name="tests.APITest"/>
         </classes>
     </test>
 

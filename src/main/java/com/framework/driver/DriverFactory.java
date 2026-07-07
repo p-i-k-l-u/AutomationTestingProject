@@ -38,6 +38,11 @@ public class DriverFactory {
             }
 
             if (driver != null) {
+                if (driver instanceof RemoteWebDriver) {
+                    ((RemoteWebDriver) driver).setFileDetector(new org.openqa.selenium.remote.LocalFileDetector());
+                }
+                driver.manage().timeouts().pageLoadTimeout(java.time.Duration.ofSeconds(60));
+                driver.manage().timeouts().implicitlyWait(java.time.Duration.ofSeconds(10));
                 driver.manage().window().maximize();
             }
         } catch (Exception e) {

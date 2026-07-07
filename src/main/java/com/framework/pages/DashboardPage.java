@@ -16,16 +16,16 @@ public class DashboardPage extends BasePage {
     }
 
     public boolean verifyDashboardDisplayed() {
-
-        String currentURL =
-                driver.getCurrentUrl();
-
-        System.out.println(
-                "Current URL : " + currentURL
-        );
-
-        return currentURL.contains(
-                "dashboard"
-        );
+        try {
+            org.openqa.selenium.support.ui.WebDriverWait wait = new org.openqa.selenium.support.ui.WebDriverWait(driver, java.time.Duration.ofSeconds(30));
+            wait.until(org.openqa.selenium.support.ui.ExpectedConditions.urlContains("dashboard"));
+            
+            String currentURL = driver.getCurrentUrl();
+            System.out.println("Current URL : " + currentURL);
+            return true;
+        } catch (Exception e) {
+            System.out.println("Timeout waiting for dashboard URL. Current URL: " + driver.getCurrentUrl());
+            return false;
+        }
     }
 }
